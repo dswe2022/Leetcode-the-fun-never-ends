@@ -150,7 +150,6 @@ class Solution:
 
 # Time: O(a), Boyer-Moorse performs constant work exactly n times, 
 # n times, so the algorithm runs in linear time.
-
 # Space: O(1) Boyer-Moore allocates only constant additional memory.
 
 
