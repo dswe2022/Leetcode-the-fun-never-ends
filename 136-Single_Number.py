@@ -53,6 +53,7 @@ class Solution(object):
             else:
                 no_duplicate_list.remove(i)
         return no_duplicate_list.pop()
+        
 
 
 #Time: O(a^2), we iterate through nums, taking O(a) time
