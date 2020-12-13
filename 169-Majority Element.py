@@ -129,3 +129,29 @@ class Solution:
             
 
 
+# Solution 6: Boyer-Moore Voting Algorithm
+# Intuition: if we had some way of counting instance of the majority element as +1 and
+# instances of any other element as -1, summing them would make it bovious that the majority
+# element is indeed the majority element.
+# Algorithm: essentially, what Boyer-Moore does is look for a suffix suf of nums where suf[0]
+# is the majoirty element in that suffix.
+
+
+class Solution:
+    def majorityElement(self, nums):
+        count = 0
+        candidate = None
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += (1 if num == candidate else -1)
+        return candidate
+
+
+# Time: O(a), Boyer-Moorse performs constant work exactly n times, 
+# n times, so the algorithm runs in linear time.
+
+# Space: O(1) Boyer-Moore allocates only constant additional memory.
+
+
+
