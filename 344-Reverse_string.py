@@ -27,3 +27,14 @@ class Solution:
 # Constant space complexity means O(1)
 # No, in-place memory can mean O(a) or using more than O(1) memory.
 
+# In-place memory means transforming input in the case the string without using any auxiliary data structure.
+# The classical way to solve this in-place memory in using recursion or calling a recursive function without any 
+# auxiliary data structure.
+
+# The recursion stack doesn't make it constant space.
+
+# Algorithm:
+# a.) Implement a helper function
+#     which gets two arrows left and right as arguments
+# b.) Base case if left >= right , do nothing
+# c.) Otherwise, swap s[left] and s[right] and call helper(left + 1, right - 1)
