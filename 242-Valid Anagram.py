@@ -20,5 +20,6 @@ class Solution(object):
 
 # Time: O(a), a is number of characters
 # Space: O(1), given we are talking about English language
-# there are only 26 letters.
+# there are only 26 letters. The number of key:value pairs stops at most
+# 26 for an English word. 
 
