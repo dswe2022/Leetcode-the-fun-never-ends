@@ -13,3 +13,5 @@ class Solution(object):
 
 
 
+# Time: O(a), a is number of nodes in Linked List.
+# Space: O(1), constant time space.
