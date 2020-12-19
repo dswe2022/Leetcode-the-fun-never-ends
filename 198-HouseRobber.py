@@ -17,7 +17,7 @@
 # Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
 # Total amount you can rob = 1 + 3 = 4.
 
-
+# Solution 1
 class Solution(object):
     def rob(self, nums):
         """
@@ -38,5 +38,19 @@ class Solution(object):
 
 
     
+# Time: O(a)
+# Space: O(a)
+
+
+# Solution 2
+
+class Solution(object):
+    def rob(self,nums):
+        prev, cur = 0,0
+        for value in nums:
+            prev,cur = cur, max(prev+value, cur)
+        return cur
+
+
 # Time: O(a)
 # Space: O(a)
