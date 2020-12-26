@@ -14,6 +14,8 @@ class Solution:
         nums1[:] = sorted(nums1[0:m]+nums2[0:n])
         return nums1[:]
 
+
+
 # Time: O(a*log(a)), a is number of elments total which is m+n
 # Space: O(1), no additional space because algorithm merges into nums1 array.
 
