@@ -48,6 +48,7 @@ class Solution:
 
 # Solution 3
 
+
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         cleanlist = [c for c in s.lower() if c.isalnum()]
