@@ -9,7 +9,6 @@
 
 
 # Use dynamic programming to solve.
-
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         dmap = [[0] * n for _ in range(m)]
@@ -19,7 +18,8 @@ class Solution:
             dmap[0][j] = 1
         for i in range(1, m):
             for j in range(1, n):
-                l = u = 0
+                u = 0
+                l = u
                 if i-1 >= 0:
                     u = dmap[i-1][j]
                 if j-1>= 0:
@@ -27,5 +27,6 @@ class Solution:
                 dmap[i][j] = l + u
         return dmap[m-1][n-1]
 
+        
 # T: O(m*n)
 # S: O(m*n)
