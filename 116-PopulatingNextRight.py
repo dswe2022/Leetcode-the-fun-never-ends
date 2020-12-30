@@ -1,8 +1,6 @@
 # Leetcode 116. Populating Next Right Pointers in Each Node
 # Medium 12/29/20 
 
-
-
 # You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. 
 # The binary tree has the following definition:
 
