@@ -23,8 +23,6 @@
 #     You may only use constant extra space.
 #     Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
 
- 
-
 # Example 1:
 
 # Input: root = [1,2,3,4,5,6,7]
