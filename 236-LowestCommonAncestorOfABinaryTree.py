@@ -14,6 +14,31 @@
 #         self.right = None
 
 
+# Solution 1 Recursion
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if any((not root, root == p, root == q)): return root
+        l = self.lowestCommonAncestor(root.left, p, q)
+        r = self.lowestCommonAncestor(root.right, p, q)
+        if not l or not r: return l if l else r
+        return root
+
+
+# Space complexity: O(h)
+
+# For a given root, recursively call LCA(root.left, p, q) and LCA(root.right, p, q)
+
+# if both returns a valid node which means p, q are in different subtrees, then root will be their LCA.
+
+# if only one valid node returns, which means p, q are in the same subtree, return that valid node as their LCA.
+
+
+
+
+
+# Solution 2 
+
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
         parent = {root:None}
