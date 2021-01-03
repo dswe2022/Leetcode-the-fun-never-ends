@@ -42,7 +42,11 @@ class Solution:
         for interval in intervals:
             # if the list of merged intervals is empty or if the current
             # interval does not overlap with the previous, simply append it.
-            if not merged or merged[-1][1] < interval[0]:
+
+            # SUPER KEY STEP!! you look at each pair and look at the second part of the pair. 
+            # If the next pair's second index is less than the current one's second index than, we 
+            # can say the initial boundary begins on that interval number.
+            if not merged or merged[-1][1] < interval[0]: 
                 merged.append(interval)
             else:
             # otherwise, there is overlap, so we merge the current and previous
