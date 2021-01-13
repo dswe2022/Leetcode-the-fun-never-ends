@@ -32,3 +32,17 @@
 #     There are no hyphens or hyphenated words.
 #     Words only consist of letters, never apostrophes or other punctuation symbols.
 
+
+# Solution 1
+
+class Solution:
+    def mostCommonWord(self,paragraph:str, banned: List[str])->str:
+        banned_set = set(banned)
+        banned_set.add("")
+        p = collections.Counter(re.split('\W', paragraph.lower())
+        for word in p.most_common():
+            if word[0] not in banned_set:
+                return word[0]
+
+# T: O(a)
+# S: O(a)
