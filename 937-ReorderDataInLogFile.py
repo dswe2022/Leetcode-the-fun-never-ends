@@ -30,3 +30,76 @@
 #     3 <= logs[i].length <= 100
 #     logs[i] is guaranteed to have an identifier, and a word after the identifier.
 
+
+# Solution 1 pop numeric data and then sort alpha data.
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        dig_logs = []
+        let_logs = []
+        results = []
+        i = 0
+        
+        while i < len(logs):
+            key, data = logs[i].split(" ", maxsplit=1)
+            if not data[0].isalpha():
+                dig_logs.append(logs[i])
+                logs.pop(i)
+                
+            else:
+                i+=1
+        for log in enumerate(logs):
+            key,data = log[1].split(" ", maxsplit=1)
+            let_logs.append([log[0], key, data])
+            
+        let_logs.sort(key=lambda x: x[1])
+        let_logs.sort(key=lambda x: x[2])
+        
+        for log in let_logs:
+            results.append(logs[log[0]])
+        
+        results += dig_logs
+        return results
+
+
+# T: O(ab)
+# S: O(a)
+
+# Solution 2 Hashmap
+
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        if not logs:
+            return []
+        
+        newlogwords = []
+        newlognums = []
+        
+        mapp = collections.defaultdict(list)
+        orderedmap = collections.defaultdict(list)
+        
+        
+        for x in logs:
+            temp = x.split()
+            if temp[1].isnumeric():
+                newlognums.append(x)
+            else:
+                mapp[temp[0]].append(temp[1:])
+                
+                newlogwords.append(temp[1:])
+        
+        newlogwords.sort()
+        sortedkeys = sorted(mapp.keys())
+        
+        for x in sortedkeys:
+            orderedmap[x] = mapp[x]
+            
+        for i,j in orderedmap.items():
+            for x in j:
+                if x in newlogwords:
+                    index = newlogwords.index(x)
+                    newlogwords[index] = str(i) + ' ' + ' '.join(newlogwords[index])
+                    
+        return newlogwords + newlognums
+
+# T: O(a)
+# S: O(a)
