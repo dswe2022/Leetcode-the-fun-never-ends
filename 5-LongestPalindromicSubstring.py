@@ -87,3 +87,45 @@ class Solution(object):
 
 # T: O(a^2)
 # S: O(a)
+
+
+# Solution 3
+
+# Three issues that we can see is:
+
+#     How do we compare the left and right?
+
+#         There are few ways that we might come up: maybe start with left endpoint and right endpoint, maybe start in middle, but the best way is to think of using each index as the middle letter for any palindromic string. Then we can compare the left and right of this middle index until it not longers match.
+
+#     How do we capture the longest one?
+
+#         Once we find palindromic string, we want to make sure it is the longest.. so everytime step we find a new palindormic.. we must compare with the previous. This is the dynamic progamming part.
+
+#     The difference between odd and even string:
+
+#         When we compare left and right of middle index, even string will not have that regular pattern and so we need to compare odd and even string differently.
+#         This will requires to different loop to search.
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if len(s) <2:
+            return s
+        res = ""
+		#check for odd case
+        for i in range(len(s)):
+            odd = self.palindrome(s,i,i)
+            if len(odd) > len(res):
+                res = odd
+		#check for even case	
+        for i in range(len(s)):
+            even = self.palindrome(s,i,i+1)
+            if len(even) > len(res):
+                res = even
+        return res
+     #we start by comparing middle index to itself, then compare its left and right. Return the longest palindromic.   
+    def palindrome(self,s,i,j):
+        while i >=0 and j < len(s) and s[i]==s[j]:
+            if s[i] == s[j]:
+                i -= 1
+                j += 1
+        return s[i+1:j]
