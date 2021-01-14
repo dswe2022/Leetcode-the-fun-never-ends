@@ -30,30 +30,35 @@
 
 
 # Solution 1
+# The main idea is to check if s begins with any dict words. If we find one, strip it off of s and make recursive call with that new s. If we end up with the empty string return true.
+
+# This results in 0(2^n) but if we store every substring in a map that maps to True if we've already solved for that substring, it becomes 0(n^2)
 
 class Solution:
-    def wordBreak(self, s:str, wordDict: List[str])-> bool:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         memo = {}
-        return self.helper(s,wordDict, memo)
-
-    def helper(self,s,wordDict,memo):
-        # Base case if word is empty its in dict or we have stripped off every word.
+        return self.helper(s, wordDict, memo)
+        
+    
+    def helper(self, s, wordDict, memo):
+        # base case: if word is empty its in dict or we've stripped off every word and result is empty
         if len(s) == 0:
             return True
         elif s in memo:
             return memo[s]
-
-
+        
         for word in wordDict:
-            prefix = s[0: len(word)]
-
-            # if we found a match, recursively call with that part stripped off.
-            if prefix == word and self.helper(s[len(word):],  wordDict, memo):
+            # check if any words in dictionary are in the beginning of s
+            prefix = s[0:len(word)]
+            
+            # if we found a match, recursive call with that part stripped off
+            if prefix == word and self.helper(s[len(word):], wordDict, memo):
                 memo[prefix] = True
                 return True
-        
+                
         memo[s] = False
         return False
+
 
 # T: O(a)
 # S: O(a)
