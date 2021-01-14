@@ -51,3 +51,29 @@ class Solution:
 
 
 
+# Solution 2 Faster
+
+class Solution:
+    def maxProfit(self, prices: List[int])-> int:
+        # It is impossible to have stock to sell on first day, so -infinity is set as initial value
+        init_hold = -float('inf')
+        init_not_hold = 0
+
+        prev_hold = init_hold
+        prev_not_hold = init_not_hold
+
+        for stock_price in prices:
+            # either keep in hold, or just buy today with stock price
+            cur_hold = max(prev_hold, -stock_price)
+
+            # either keep in not holding, or just sell today with stock price
+            cur_not_hold = max(prev_not_hold, prev_hold + stock_price)
+
+            prev_hold = cur_hold
+            prev_not_hold = cur_not_hold
+
+            # maximum profit must be in not-state
+        
+        return cur_not_hold if prices else 0
+
+        
