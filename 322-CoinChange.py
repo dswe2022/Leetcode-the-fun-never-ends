@@ -43,23 +43,43 @@
 #     1 <= coins[i] <= 231 - 1
 #     0 <= amount <= 104
 
+# Solution 1
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [amount + 1] * (amount +1)
+        dp[0] = 0
+        def dfs(a):
+            if a < 0:
+                return a
+            for c in coins:
+                res = dfs(a - c)
+                if res >= 0:
+                    dp[a] = min(dp[a],  1 + res)
+            return dp[a] if dp[a] < amount + 1 else -1
+        return dfs(amount)
+
+        
 
 
 
-class Solution(object):
-    def coinChange(self, coins, amount):
+
+
+
+
+# Solution 2 Bottom-up Dyanamic Programming approach
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
         rs = [amount + 1] * (amount + 1)
         rs[0] = 0
-        for i in xrange(1, amount + 1):
+        for i in range(1, amount + 1):
             for x in coins:
-                if i >= c:
-                    rs[i] = min(rs[i], rs[i-c] + 1)
+                if i >= x:
+                    rs[i] = min(rs[i], rs[i-x] + 1)
         
-        if rs[amount] == amount + 1:
+        if rs[amount] == amount +1:
             return -1
         return rs[amount]
-
-
     
 
 # Time: O(a*b), a is number of elements -1 and b is number of elements in coins.
