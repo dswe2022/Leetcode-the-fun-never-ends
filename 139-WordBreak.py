@@ -28,3 +28,33 @@
 # Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 # Output: false
 
+
+# Solution 1
+
+class Solution:
+    def wordBreak(self, s:str, wordDict: List[str])-> bool:
+        memo = {}
+        return self.helper(s,wordDict, memo)
+
+    def helper(self,s,wordDict,memo):
+        # Base case if word is empty its in dict or we have stripped off every word.
+        if len(s) == 0:
+            return True
+        elif s in memo:
+            return memo[s]
+
+
+        for word in wordDict:
+            prefix = s[0: len(word)]
+
+            # if we found a match, recursively call with that part stripped off.
+            if prefix == word and self.helper(s[len(word):],  wordDict, memo):
+                memo[prefix] = True
+                return True
+        
+        memo[s] = False
+        return False
+
+# T: O(a)
+# S: O(a)
+
