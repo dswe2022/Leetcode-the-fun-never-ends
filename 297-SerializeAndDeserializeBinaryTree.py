@@ -106,3 +106,124 @@ class Codec:
 
 # The solutions with BFS or other DFS strategies normally will have the same time and space complexity.
 
+
+
+
+# Solution 2
+# Super fast
+
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+    def serialize(self, root):
+        """
+        Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        if not root:
+            return '[]'
+        res = [root.val]
+        q = collections.deque([root])
+        while q:
+            front = q.popleft()
+            res.append("null")
+            if front.left:
+                q.append(front.left)
+                res[-1] = front.left.val
+            res.append("null")
+            if front.right:
+                q.append(front.right)
+                res[-1] = front.right.val
+        while res and res[-1] == 'null':
+            res.pop()
+  
+        return ','.join(map(str,res))
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        
+        if data == '[]':
+            return None
+        vals = data.split()
+        root = TreeNode(vals[0])
+        
+        return root
+
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
+
+
+
+# Solution 3 
+# 108 ms
+
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+    def serialize(self, root):
+        """
+        Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        if not root:
+            return '[]'
+        res = [root.val]
+        q = collections.deque([root])
+        while q:
+            front = q.popleft()
+            res.append("null")
+            if front.left:
+                q.append(front.left)
+                res[-1] = front.left.val
+            res.append("null")
+            if front.right:
+                q.append(front.right)
+                res[-1] = front.right.val
+        while res and res[-1] == 'null':
+            res.pop()
+  
+        return ','.join(map(str,res))
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        
+        if data == '[]':
+            return None
+        vals = data.split()
+        root = TreeNode(vals[0])
+        
+        return root
+
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
+
