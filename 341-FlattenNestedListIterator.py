@@ -72,3 +72,28 @@ class NestedIterator:
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
 # while i.hasNext(): v.append(i.next())
+
+
+# Solution 2
+# Similar to a/A solution with recursion
+
+class NestedIterator:
+    
+    def __init__(self, nestedList: [NestedInteger]):
+        def flatten_list(nested_list):
+            for nested_integer in nested_list:
+                # Very similar to a/A
+                if nested_integer.isInteger():
+                    self._integers.append(nested_integer.getInteger())
+                else:
+                    flatten_list(nested_integer.getList()) 
+        self._integers = []
+        self._position = -1 # Pointer to previous returned.
+        flatten_list(nestedList)
+    
+    def next(self) -> int:
+        self._position += 1
+        return self._integers[self._position]
+        
+    def hasNext(self) -> bool:
+        return self._position + 1 < len(self._integers)
