@@ -18,8 +18,84 @@
 
 #     1 <= n <= 8
 
-
 # Solution 1
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        self.ans = []
+        self.gen(n,n,"")
+        
+        return self.ans
+
+    # o means total no. of reamining OP availabel to append.
+    # c total no. of remaining CP available to append
+    # s currently constructed string.
+    
+    def gen(self, o,c,s):
+        if o> c:
+            return
+        if o == 0 and c == 0:
+            self.ans.append(s)
+            return
+        if o == 0:
+            self.gen(o, c-1, s+")")
+        else:
+            self.gen(o-1, c, s+"(")
+            self.gen(o,c-1,s+")")
+        
+
+
+
+# Solution Python DP solution 
+# Basically the same with approach 3, but we can see generateParenthesis(k) is called multiple times for a certain value k. So we can use recursion+memo to perform a DP, which takes more memory but much faster.
+# BTW, c means how many parenthesis in the left part of "({}){}" format.
+
+# Solution 2
+class Solution:
+    def generateParenthesis(self, n:int ):
+        dp = {}
+        dp[0] = [""]
+        dp[1] = ["()"]
+
+        def helper(k):
+            ans = []
+            if k in dp:
+                return dp[k]
+            for c in range(k):
+                left = helper(c)
+                right = helper(k-c-1)
+                for item1 in left:
+                    for item2 in right:
+                        ans.append("({}){}".format(item1, item2))
+            return ans
+
+        ans = helper(n)
+        return ans
+
+
+# Solution 3 another DP solution
+
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        dp={1:set()}
+        dp[1].add("()")
+        for i in range(1,n):
+            dp[i+1]=set()
+            for j in dp[i]:
+                dp[i+1].add("("+j+")")
+            for j in range((i+1)//2):
+                for k in dp[j+1]:
+                    for l in dp[i-j]:
+                        dp[i+1].add(k+l)
+                        dp[i+1].add(l+k)
+                        
+        return list(dp[n])
+
+
+
+
+
+# Solution 4
 class Solution(object):
     def generateParenthesis(self, n):
         """
@@ -45,31 +121,8 @@ class Solution(object):
     # S: O(a)
 
 
-# Solution 2
 
-
-class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
-        self.ans = []
-        self.gen(n,n,"")
-        
-        return self.ans
-
-
-    def gen(self, o,c,s):
-        if o> c:
-            return
-        if o == 0 and c == 0:
-            self.ans.append(s)
-            return
-        if o == 0:
-            self.gen(o, c-1, s+")")
-        else:
-            self.gen(o-1, c, s+"(")
-            self.gen(o,c-1,s+")")
-        
-
-# Solution 3
+# Solution 5
 # 12 ms
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
@@ -88,7 +141,7 @@ class Solution:
         return cache[-1]
 
 
-# Solution 4
+# Solution 6
 # sample 16 ms submission
 
 class Solution:
