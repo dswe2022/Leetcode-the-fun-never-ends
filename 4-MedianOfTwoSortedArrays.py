@@ -46,7 +46,46 @@
 #     -106 <= nums1[i], nums2[i] <= 106
 
 
-# Solution 1 60 ms
+# Solution 1 Use this as the final answer
+
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+    
+        n1, n2 = len(nums1), len(nums2)
+        
+        if n1 > n2:
+            return self.findMedianSortedArrays(nums2, nums1)
+        
+        l, r, k = -1, n1, (n1+n2+1)//2
+        while l + 1 < r:
+            mid1 = (l+r)//2
+            mid2 = k-mid1
+            if nums1[mid1] < nums2[mid2-1]:
+                l = mid1
+            else:
+                r = mid1
+        
+        mid1 = r
+        mid2 = k-r
+        
+        L1 = nums1[mid1-1] if mid1 > 0 else float('-inf')
+        L2 = nums2[mid2-1] if mid2 > 0 else float('-inf')
+        
+        if (n1+n2)%2 == 1:
+            return max(L1, L2)
+        
+        R1 = nums1[mid1] if mid1 < n1 else float('inf')
+        R2 = nums2[mid2] if mid2 < n2 else float('inf')
+        
+        return (max(L1, L2)+min(R1, R2))/2
+    
+        
+        
+                
+        
+                
+
+# Solution 2 60 ms
 
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
@@ -54,7 +93,7 @@ class Solution:
         mid = len(data) // 2
         return (data[mid] + data[-mid-1:][0]) / 2
 
-# Solution 2 64 ms
+# Solution 3 64 ms
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
         nums1.extend(nums2)
@@ -68,7 +107,7 @@ class Solution:
 
 
 
-# Solution 3 75 ms
+# Solution 4 75 ms
 class Solution:
     def findMedianSortedArrays(self, a: List[int], b: List[int]) -> float:
         m,n = len(a), len(b)
@@ -104,7 +143,7 @@ class Solution:
 
 
 
-# Solution 4
+# Solution 5
 
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:

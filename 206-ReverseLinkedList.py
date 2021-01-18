@@ -5,16 +5,20 @@
 # Approach 1: Iterative
 # Assume that we have linked list 
 
-class Solution(object):
-    def reverseList(self, head):
-        prev = None
-        curr = head
-        while curr != None:
-            nextTemp = curr.next
-            curr.next = prevprev 
-            curr = nextTemp
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        # recursive: T O(n),  M O(n)
         
-        return prev
+        if not head:
+            return None
+        
+        newHead = head
+        if head.next:
+            newHead = self.reverseList(head.next)
+            head.next.next = head
+        head.next = None
+        
+        return newHead
 
 
 
@@ -32,15 +36,16 @@ class Solution(object):
 # This bug could be caught if you test your code with a linked list of size 2.
 
 
-class Solution(object):
-    def reverseList(self, head):
-        if head == None or head.next == None:
-            return head
-
-        p = self.reverseList(head.next)
-        head.next.next = head
-        head.next = None
-        return p
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        prev, curr = None, head
+        
+        while curr:
+            nxt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nxt
+        return prev
 
 
 # Time: O(a), assume that a is the list's length, the time complexity is O(a)
