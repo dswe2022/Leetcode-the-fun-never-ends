@@ -130,40 +130,31 @@ class Solution(object):
 # Pair up k lists and merge each pair.
 
 
-class Solution(object):
-    def mergeKLists(self, lists):
-        amount = len(lists)
-        interval = 1
-        while interval < amount:
-            for i in range(0, amount - interval):
-                lists[i] = self.merge2Lists(lists[i], lists[i+interval])
-            interval *= 2
-        return lists[0] if amount > 0 else None
-
-
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        return self.partition(lists, 0, len(lists)-1)
     
-    def merge2Lists(self, l1, l2):
-        head = point = ListNode(0)
-
-        while l1 and l2:
-            if l1.val <= l2.val:
-                point.next = l1
-                l1 = l1.next
-            else:
-                point.next = l2
-                l2 = l1
-                l1 = point.next.next
-            point = point.next
-        
-
-        if not l1:
-            point.next = l2
+    def partition(self, lists, start, end):
+        if start > end:
+            return None    #if the lists are empty
+        if start==end:
+            return lists[start]
+        mid = start + (end - start)//2
+        l = self.partition(lists, start, mid)
+        r = self.partition(lists, mid+1, end)
+        return self.merge(l, r)
+    
+    def merge(self, l, r):
+        if not l:
+            return r
+        if not r:
+            return l
+        if l.val <= r.val:
+            l.next = self.merge(l.next, r)
+            return l
         else:
-            point.next = l1
-
-        return head.next
-
-
+            r.next = self.merge(l, r.next)
+            return r
 
 # T: O(a log(k)), where k is the number of linked lists.
 # S: O(1), we can merge two sorted linked lists in O(1) space.
