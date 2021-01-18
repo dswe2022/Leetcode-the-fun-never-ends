@@ -129,6 +129,7 @@ class Solution(object):
 # This approach walks alongside the one above but is improved a lot. We don't need to traverse most nodes many times repeatedly.
 # Pair up k lists and merge each pair.
 
+
 class Solution(object):
     def mergeKLists(self, lists):
         amount = len(lists)
