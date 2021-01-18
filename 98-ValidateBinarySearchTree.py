@@ -43,7 +43,7 @@ class Solution:
                 stack.append(curr)
                 curr = curr.left
             curr = stack.pop(len(stack) -1)
-            curr_len = len(inorderList);
+            curr_len = len(inorderList)
             if (curr_len > 0):
                 if (inorderList[curr_len-1] >= curr.val):
                     return False
