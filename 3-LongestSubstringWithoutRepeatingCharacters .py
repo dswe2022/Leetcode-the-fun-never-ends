@@ -35,7 +35,25 @@
 #     0 <= s.length <= 5 * 104
 #     s consists of English letters, digits, symbols and spaces.
 
+
 # Solution 1
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        charSet = set()
+        res = 0
+        l = 0
+        
+        for r in range(len(s)):
+            while s[r] in charSet:
+                charSet.remove(s[l])
+                l += 1
+            charSet.add(s[r])
+            res = max(res, r - l + 1)
+        return res
+        
+
+
+# Solution 2
 # Simple Python Sliding window technique
 
 class Solution(object):
@@ -79,7 +97,7 @@ class Solution(object):
 
 
 
-# Solution 2
+# Solution 3
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         set1 = set()
