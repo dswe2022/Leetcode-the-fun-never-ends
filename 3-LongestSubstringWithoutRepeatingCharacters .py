@@ -36,8 +36,26 @@
 #     s consists of English letters, digits, symbols and spaces.
 
 # Solution 1
+# Use this solution
+
 class Solution:
-    
+    # Corner case
+    if s == "":
+        return 0
+    window = set()
+    left = 0
+    max_len = 0
+    for cur in s:
+        while cur in window:
+            window.remove(s[left])
+            left += 1
+        
+        window.add(cur)
+        max_len = max(max_len, len(window))
+    return max_len
+
+
+
 
 
 
