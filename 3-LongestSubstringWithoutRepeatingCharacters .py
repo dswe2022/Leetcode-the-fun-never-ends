@@ -36,6 +36,8 @@
 #     s consists of English letters, digits, symbols and spaces.
 
 # Solution 1
+# Simple Python Sliding window technique
+
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
         """
