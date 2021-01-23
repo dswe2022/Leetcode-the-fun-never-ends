@@ -20,8 +20,31 @@
 #     -10^4 <= target <= 10^4
 
 
+# Solution 1
+# Check the target for less.
+# abs(target - sum) is the distance of diff AKA diff
+# abs(diff) 
+
 
 
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
-        
+        # Create a diff 
+        diff = float("inf")
+        nums.sort()
+        for idx in range(len(nums)):
+            hi = len(nums)-1
+            lo = idx + 1             
+            while lo < hi:
+                sum = nums[lo] + nums[hi] + nums[idx]
+                if abs(target - sum) < abs(diff):
+                    diff = target - sum
+                if sum < target:
+                    lo += 1
+                else:
+                    hi -=1
+                if diff == 0:
+                    break
+        return target - diff 
+
+
