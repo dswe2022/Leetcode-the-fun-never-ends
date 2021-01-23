@@ -27,3 +27,27 @@
 
 # Input: haystack = "", needle = ""
 # Output: 0
+
+
+class Solution:
+    def strStr(self, haystack: str, needle:str)-> int:
+        L = len(needle)
+        n = len(haystack)
+
+        for start in range(n - L +1):
+            if haystack[start: start + L] == needle:
+                return start
+        return -1
+
+
+# T: O((N-L)L), where N is a length of haystack and L is a length of
+# needle. We compute a substring of length L in a loop, which executed (N-L) times.
+
+# Space complexity: O(1)
+
+
+
+
+
+
+
