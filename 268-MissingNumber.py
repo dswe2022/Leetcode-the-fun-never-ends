@@ -4,18 +4,18 @@
 # Solution A
 def missingNumber(nums):
     nums.sort()
-    # Ensure that n is at the last index
     if nums[-1] != len(nums):
-        return != len(nums)
-    # Ensure that 0 is at the first index
+        return len(nums)
+
     elif nums[0] != 0:
         return 0
-    # If we get have, then the missing number
-    # is on the range(0,n)
+    
     for i in range(1, len(nums)):
-        expected_num = num[i-1] +1
-        if nums[i] != expected - num:
+        expected_num = nums[i-1] + 1
+        if nums[i] != expected_num:
             return expected_num
+
+            
 
 
 # Time: O(a *log(a))
