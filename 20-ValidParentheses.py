@@ -9,7 +9,7 @@
 # Open brackets must be closed in the correct order.
 
 
-# Solution 1
+# Solution 1 My solution 
 
 class Solution(object):
     def isValid(self, s):
