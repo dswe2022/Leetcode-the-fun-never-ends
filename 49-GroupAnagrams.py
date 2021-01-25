@@ -36,6 +36,29 @@
 
 
 # Solution 1
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = {}
+        for i in strs:
+            tuple1 = tuple(sorted([j for j in i]))
+            if tuple1 in d:
+                d[tuple1].append(i)
+            else:
+                d[tuple1] = [i]
+        
+        arr = []
+        print(d)
+        for i in d.values():
+            arr.append(i)
+        return arr
+
+
+
+
+
+
+# Solution 2
 from collections import defaultdict
 
 class Solution:
