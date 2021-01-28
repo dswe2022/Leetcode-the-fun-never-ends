@@ -48,3 +48,16 @@ class Solution:
             if b >= (-2**31):
                 return b
             return 0
+
+# Solution 3
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        b = str(abs(x))[::-1]
+        surya = -1 if x < 0 else 1
+        
+        res = surya * int(b)
+        
+        if res >= (2**31 -1) or res <= -2**31:
+            return 0
+        return res
